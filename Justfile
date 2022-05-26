@@ -9,7 +9,7 @@ bootstrap:
     npm install
 
 build:
-    tsc
+    npm run prepublish
 
 test filter="":
     mocha -r esbuild-register \
