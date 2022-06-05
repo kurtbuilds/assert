@@ -16,8 +16,12 @@ class AssertionError extends Error {
     constructor(message, comparison) {
         super('');
         this.comparison = comparison;
-        this.stack = this.stack?.split('\n')
-            .slice(7).join('\n');
+        let stack = this.stack.split('\n');
+        const start = stack.indexOf("AssertionError");
+        stack = stack.slice(start);
+        const end = stack.findIndex(line => line.search(/node_modules\/(vitest|mocha)\//) > -1);
+        this.stack = stack
+            .slice(3, end).join('\n');
         this.message = message + comparison;
     }
 }
