@@ -1,13 +1,8 @@
 import * as assert from '../index'
 
 
-function other_function() {
-    assert.is_true(false)
-}
-
 describe("assert", () => {
     it("should be defined", function () {
-        other_function()
         try {
             assert.is_true(false)
         } catch (_e) {
