@@ -23,7 +23,6 @@ version level:
     tsc --noEmit
     just test
     npm version {{level}}
-    git commit -am "bump {{level}} version"
     LIB=$(basename $(pwd)) VERSION=$(rg  "\"version\": \"([0-9.]+)\"" -or '$1' package.json | head -n1) TAG=$LIB-v$VERSION && \
         git tag $TAG && \
         git push origin $TAG
