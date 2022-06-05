@@ -17,7 +17,6 @@ test filter="":
         './{,!(node_modules)/**}/__tests__/*.ts'
 alias t := test
 
-
 # Increase version
 version level:
     git diff-index --exit-code HEAD > /dev/null || ! echo $(dye -r ERROR) You have untracked changes. Commit your changes before bumping the version
@@ -31,8 +30,12 @@ version level:
     git push
 
 publish:
-    npm publish
-    git clean -f
+    git diff-index --exit-code HEAD > /dev/null || ! echo $(dye -r ERROR) You have untracked changes. Commit your changes before bumping the version
+    git checkout next
+    just build
+    git commit -am "Commit build"
+    git push
+    git checkout master
 
 patch:
     just version patch
