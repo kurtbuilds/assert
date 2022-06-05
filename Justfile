@@ -31,7 +31,7 @@ version level:
 publish:
     git diff-index --exit-code HEAD > /dev/null || ! echo $(dye -r ERROR) You have untracked changes. Commit your changes before bumping the version
     git checkout next
-    git merge master --ff
+    git merge master --ff -m "Merge"
     just build
     git commit -am "Commit build"
     git push
